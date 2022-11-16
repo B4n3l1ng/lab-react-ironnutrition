@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FoodBox from './components/FoodBox';
 import { Row, Divider, Button } from 'antd';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
   const [foodArray, setFoodArray] = useState(foods);
@@ -16,6 +17,7 @@ function App() {
       <Button> Hide Form / Add New Food </Button>
 
       {/* Display Search component here */}
+      <Search foodArray={foodArray} setFoodArray={setFoodArray} />
 
       <Divider>Food List</Divider>
 
