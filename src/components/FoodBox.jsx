@@ -15,7 +15,7 @@ function FoodBox({food, deleteFood}) {
         <p>
           <b>Total Calories: {food.calories} * {food.servings} </b> kcal
         </p>
-        <Button type="primary" onClick={()=>deleteFood(food.name)}> Delete </Button>
+        <Button type="primary" onClick={()=>deleteFood(food.tempId)}> Delete </Button>
       </Card>
     </Col>
   );

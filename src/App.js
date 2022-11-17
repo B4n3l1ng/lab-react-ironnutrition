@@ -8,8 +8,12 @@ import Search from './components/Search';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [foodArray, setFoodArray] = useState(foods);
-  const [showFood, setShowFood] = useState(foods);
+  const [foodArray, setFoodArray] = useState(
+    foods.map((currentFood) => ({ ...currentFood, tempId: uuidv4() }))
+  );
+  const [showFood, setShowFood] = useState(
+    foods.map((currentFood) => ({ ...currentFood, tempId: uuidv4() }))
+  );
   const [show, setShow] = useState(true);
 
   const createFood = (food) => {
@@ -25,8 +29,8 @@ function App() {
     setShowFood(filtItems);
   };
 
-  const deleteFood = (name) => {
-    const filtItens = foodArray.filter((food) => food.name !== name);
+  const deleteFood = (tempId) => {
+    const filtItens = foodArray.filter((food) => food.tempId !== tempId);
     setFoodArray(filtItens);
     setShowFood(filtItens);
   };
@@ -52,8 +56,12 @@ function App() {
         {showFood.length ? (
           showFood.map((food) => {
             return (
-              <div key={uuidv4()}>
-                <FoodBox food={food} deleteFood={deleteFood} />
+              <div>
+                <FoodBox
+                  key={food.tempId}
+                  food={food}
+                  deleteFood={deleteFood}
+                />
               </div>
             );
           })
