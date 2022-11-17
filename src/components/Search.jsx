@@ -2,20 +2,18 @@ import { Divider, Input } from 'antd';
 import { useState } from 'react';
 
 // Iteration 5
-function Search({foodArray,setFoodArray}) {
-    const [nameSearch, setNameSearch] = useState("")
-    const handleSearch = (event) => {
-        setNameSearch(event.target.value.toLowerCase())
+function Search({filteredItems}) {
+  const [query, setQuery] = useState('');
+    const handleChange = (event) => {
         event.preventDefault()
-        const searchArray = [...foodArray]
-        setFoodArray(searchArray.filter(element => element.name.toLowerCase().includes(nameSearch)))
+        setQuery(event.target.value)
+        filteredItems(event.target.value)
     }
   return (
     <>
       <Divider>Search</Divider>
-
       <label>Search</label>
-      <Input value={nameSearch} type="text" onChange={(event) => handleSearch(event)} />
+      <Input value={query} type="text" onChange={handleChange} />
     </>
   );
 }
